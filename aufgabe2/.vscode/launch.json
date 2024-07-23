@@ -1,0 +1,17 @@
+{
+    "type": "java",
+    "name": "Launch Program",
+    "request": "launch",
+    "mainClass": "${file}",
+    
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Bubblesort",
+            "request": "launch",
+            "mainClass": "Bubblesort",
+            "projectName": "aufgabe2_557ded50",
+            "args": ["10"],
+        }
+    ]
+}
