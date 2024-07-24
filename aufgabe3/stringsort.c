@@ -1,19 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <string.h>
+#include <time.h>
 
-int string_comparator(const void *a, const void *b) {
-    // Cast the void pointers to char pointers
-    const char **str1 = (const char **)a;
-    const char **str2 = (const char **)b;
-
-    // Use strcmp to compare the strings
-    return strcmp(*str1, *str2);
-}
-
-void bubblesort(char **a[], int n) {
-    for (int i = n; i > 1; --i){
+void bubblesort(char **a, int n) {
+    for (int i = n; i > 1; --i) {
         for (int j = 0; j < i - 1; ++j) {
             if (strcmp(a[j], a[j + 1]) > 0) {
                 char *tmp = a[j + 1];
@@ -22,75 +13,58 @@ void bubblesort(char **a[], int n) {
             }
         }
     }
-    return;
 }
 
-int equals (char *a, char *b, int n) {
-    for (int i = 0; i < n; i++) {
-        if(a[i] != b[i]) {
-            return 1;
-        }
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s Anzahl\n", argv[0]);
+        return 1;
     }
 
-    return 0;
-}
+    int n = atoi(argv[1]);
+    if (n < 1) {
+        fprintf(stderr, "Anzahl muss mindestens 1 sein\n");
+        return 1;
+    }
 
-int main(int argc, char *argv[]){
-    // Seeding random
+    char **a = malloc(n * sizeof(char *));
+    if (a == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return 1;
+    }
+
     srand(time(NULL));
 
-    if (argc < 1) {
-        printf("Usage: %s <number_of_elements\n", argv[0]);
-        return 1;
-    }
-
-    // Arraygroesse
-    int n = atoi(argv[1]);
-    if(n <= 0) {
-        printf("Number of Elements must be positive.\n");
-        return 1;
-    }
-
-    int max_length = 100;
-
-    // Allocate memory for String array
-    char **string_array = malloc(n * sizeof (char *));
-    if (string_array == NULL) {
-        printf("Memory allocation failed.\n");
-        return 1;
-    }
-
-    // Allocate memory for each string and assign random values between 0 and 9
-    for (int i = 0; i < n; i++) {
-        string_array[i] = malloc(max_length * sizeof(char));
-        if(string_array == NULL) {
-            printf("Memory allocation failed.\n");
+    printf("Unsortiertes Array:\n");
+    for (int i = 0; i < n; ++i) {
+        int r = rand() % n;
+        a[i] = malloc(12 * sizeof(char)); // Allocate memory for each string
+        if (a[i] == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
             return 1;
         }
-        int random_number = rand() % 10; // Generate a random number between 0 and 9
-        snprintf(string_array[i], max_length, "String %d", random_number);
+        snprintf(a[i], 12, "%d", r);
+        printf("%s ", a[i]);
     }
+    printf("\n");
 
-    bubblesort(string_array, n);
+    bubblesort(a, n);
 
-    char *out = malloc(n * 2 * sizeof(char *));
-    int tmp = n;
-    int j = 0;
-    for (int i = 1; i < tmp; i++, j++) {
-        if(equals(string_array[i], string_array[i - 1] == 0, n)) {
-            out[i] = '*';
+    printf("Sortiertes Array:\n");
+    printf("%s", a[0]);
+    for (int i = 1; i < n; ++i) {
+        if (strcmp(a[i], a[i - 1]) == 0) {
+            printf("*");
         } else {
-            out[i] = ' ';
-            i++;
-            tmp++;
-            out[i] = string_array[j];
+            printf(" %s", a[i]);
         }
     }
-    free(tmp);
+    printf("\n");
 
-    for(int i = 0; i < n; i++) {
-        printf("%c", out[i]);
+    for (int i = 0; i < n; ++i) {
+        free(a[i]);
     }
+    free(a);
 
     return 0;
 }
