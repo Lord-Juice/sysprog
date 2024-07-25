@@ -15,6 +15,8 @@ void bubblesort(char **a, int n) {
     }
 }
 
+int a = 0;
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s Anzahl\n", argv[0]);

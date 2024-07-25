@@ -1,0 +1,25 @@
+package vorbereitung;
+
+public class Gruss {
+    private Gruss() {}
+
+    private static final String GRUSS_FORMAT = "%s %s!%n";
+
+    public static void ausgeben(String vorname) {
+        if(vorname.equals("Sepp")) {
+            System.out.printf(GRUSS_FORMAT, "Servus", vorname);
+        } else {
+            System.out.printf(GRUSS_FORMAT, "Hallo", vorname);
+        }
+    }
+}
+
+public final class GrussTest {
+    private GrussTest() {}
+
+    public static void main(String[] args) {
+        System.out.println("Bitte Vornamen eingeben: ");
+        String vorname = new java.util.Scanner(System.in).next();
+        Gruss.ausgeben(vorname);
+    }
+}
