@@ -4,10 +4,14 @@
 
 int main(int argc, char const *argv[])
 {
-    if(atoi(argv[1]) == NULL){
-        printf("Eingabe ist keine Nummer");
+    double k;
+    if(sscanf(argv[1], "%lf", &k) < 0) {
+        return 1;
     }
-    double k = 
+
+    double f = oberflaeche(k);
+    double v = voloumen(k);
+    printf("Kantenlänge %lf, Oberfläche: %lf, Volumen: %lf\n", k, f, v);
 
 
     return 0;
