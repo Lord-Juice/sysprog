@@ -15,7 +15,7 @@ void bubblesort(int a[], int n) {
     return;
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, const char *argv[]){
     // Seeding random
     srand(time(NULL));
 

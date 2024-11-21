@@ -1,138 +1,200 @@
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ javac Bubblesort.java
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ java Bubblesort 10
-Bitte 10 ganze Zahlen eingeben: 3
-21
-5432
-432
-55
--1
-123
-5
-23443
-234
-Sortierte Zahlenfolge: 
--1
+paul@KruesselPC:~/sysprog/aufgabe2$ make clean
+rm -f bubblesort bubblesort.o
+paul@KruesselPC:~/sysprog/aufgabe2$ javac Bubblesort.java
+paul@KruesselPC:~/sysprog/aufgabe2$ java Bubblesort  10
+Bitte 10 ganze Zahlen eingeben: 2
+45
+23
+543
+
+12
 3
-5
-21
-55
-123
-234
-432
-5432
-23443
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ make
+534
+2
+43
+25
+Sortierte Zahlenfolge:
+2
+2
+3
+12
+23
+25
+43
+45
+534
+543
+paul@KruesselPC:~/sysprog/aufgabe2$ make
 gcc -g -Wall -Wextra -Werror -Wvla -std=c11 -pedantic    bubblesort.c   -o bubblesort
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ ./bubblesort 10
-Bitte 10 ganze Zahlen eingeben: 893021
-1290
-390
-319
-1902 
-938291083
-1298031
--1321321
-321
--3
+paul@KruesselPC:~/sysprog/aufgabe2$ ./bubblesort 10
+Bitte 10 ganze Zahlen eingeben: 2
+45
+23
+543
+
+12
+3
+534
+2
+43
+25
 Sortierte Zahlenfolge:
--1321321
--3
-319
-321
-390
-1290
-1902
-893021
-1298031
-938291083
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ valgrind ./bubblesort 10
-==75939== Memcheck, a memory error detector
-==75939== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==75939== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==75939== Command: ./bubblesort 10
-==75939== 
-Bitte 10 ganze Zahlen eingeben: 89234
-2390
-23480923
-23849028
-3248920482908409
-4385903
-238940
-54398
-239
-32
+2
+2
+3
+12
+23
+25
+43
+45
+534
+543
+paul@KruesselPC:~/sysprog/aufgabe2$ valgrind ./bubblesort 10
+==5095== Memcheck, a memory error detector
+==5095== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==5095== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==5095== Command: ./bubblesort 10
+==5095==
+Bitte 10 ganze Zahlen eingeben: 321
+132
+43
+
+37654
+65
+87654
+34
+57
+675
+45
 Sortierte Zahlenfolge:
-32
-239
-2390
-54398
-89234
-238940
-4385903
-23480923
-23849028
-1061783801
-==75939== 
-==75939== HEAP SUMMARY:
-==75939==     in use at exit: 0 bytes in 0 blocks
-==75939==   total heap usage: 3 allocs, 3 frees, 2,088 bytes allocated
-==75939== 
-==75939== All heap blocks were freed -- no leaks are possible
-==75939== 
-==75939== For lists of detected and suppressed errors, rerun with: -s
-==75939== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ make cppcheck
+34
+43
+45
+57
+65
+132
+321
+675
+37654
+87654
+==5095==
+==5095== HEAP SUMMARY:
+==5095==     in use at exit: 0 bytes in 0 blocks
+==5095==   total heap usage: 3 allocs, 3 frees, 2,088 bytes allocated
+==5095==
+==5095== All heap blocks were freed -- no leaks are possible
+==5095==
+==5095== For lists of detected and suppressed errors, rerun with: -s
+==5095== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+paul@KruesselPC:~/sysprog/aufgabe2$ make cppcheck
 cppcheck --enable=warning,style --std=c11 bubblesort.c
 Checking bubblesort.c ...
-bubblesort.c:18:26: style: Parameter 'argv' can be declared as const array [constParameter]
-int main(int argc, char *argv[]){
-                         ^
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ ./bubblesort 1000 < dev/null | tail -1000 > out.txt
-bash: dev/null: No such file or directory
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ ./bubblesort 1000 < /dev/null | tail -1000 > out.txt
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ sort -n out.txt | diff - out.txt
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time java Bubblesort 1000 < /dev/null > /dev/null
+paul@KruesselPC:~/sysprog/aufgabe2$ ./bubblesort 1000 < /dev/null | tail -1000 > out.txt
+paul@KruesselPC:~/sysprog/aufgabe2$ sort -n out.txt |diff - out.txt
+paul@KruesselPC:~/sysprog/aufgabe2$ man tail
+paul@KruesselPC:~/sysprog/aufgabe2$ time java Bubblesort 1000 < /dev/null > /dev/null
 
-real	0m0.082s
-user	0m0.085s
-sys	0m0.040s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time ./bubblesort 1000 < /dev/null > /dev/null
+real    0m0.071s
+user    0m0.084s
+sys     0m0.021s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 1000 < /dev/null > /dev/null
 
-real	0m0.002s
-user	0m0.001s
-sys	0m0.001s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time ./bubblesort 10000 < /dev/null > /dev/null
+real    0m0.002s
+user    0m0.000s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time java Bubblesort 10000 < /dev/null > /dev/null
 
-real	0m0.087s
-user	0m0.087s
-sys	0m0.000s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
+real    0m0.119s
+user    0m0.244s
+sys     0m0.011s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 10000 < /dev/null > /dev/null
 
-real	0m18.511s
-user	0m18.482s
-sys	0m0.001s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time java Bubblesort 10000 < /dev/null > /dev/null
+real    0m0.083s
+user    0m0.090s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time java Bubblesort 100000 < /dev/null > /dev/null
 
-real	0m0.152s
-user	0m0.437s
-sys	0m0.077s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time java Bubblesort 100000 < /dev/null > /dev/null
+real    0m12.322s
+user    0m9.611s
+sys     0m0.091s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
 
-real	0m9.866s
-user	0m10.090s
-sys	0m0.105s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ make "CC=gcc -g -O2" clean all
+real    0m13.981s
+user    0m15.251s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ make "CC=gcc -g -O2" clean all
 rm -f bubblesort bubblesort.o
 gcc -g -O2 -Wall -Wextra -Werror -Wvla -std=c11 -pedantic    bubblesort.c   -o bubblesort
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time ./bubblesort 10000 < /dev/null > /dev/null
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
 
-real	0m0.163s
-user	0m0.162s
-sys	0m0.001s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
+real    0m20.540s
+user    0m21.947s
+sys     0m0.000s
 
-real	0m22.439s
-user	0m22.438s
-sys	0m0.001s
-paul@pauls:~/htwg/semester2/syprog/aufgabe2$ 
+Beantwortung der Fragen:
 
+Wächst die Ausführungszeit tatsächlich quadratisch mit der Array-Größe?
+Ja. Bubblesort benötigt bei einem Array mit 1.000 Einträgen 0,002 Sekunden, bei 10.000 Einträgen nur 0,083s, aber über 12 Sekunden, wenn das Array 100.000 Einträge hat.
+D.h., es wächst definitiv nicht linear sondern exponential.
+
+Ist das Java-Programm oder das C-Programm schneller? Können Sie sich den Unterschied erklären?
+Bei 1.000 und 10.000 Einträgen ist das C-Programm schneller. Sobald das Array aber 100.000 Einträge hat, wird die Java Implementation schneller.
+Dies liegt daran, dass Java in C kompiliert wird, bevor es ausgeführt werden kann. Dies wird von einem Kompilierer durchgeführt, welcher deutlich
+optimierteren C-Code schreibt, als ich kann. Daher benötigt es am Anfang länger, da der Prozess der Kompilierung länger dauert, als mein C-Programm.
+Sobald die Laufzeit aber ca. eine Sekunde überschreitet, spielt dies keine Rolle mehr, da ab diesem Punkt der Kompilierte C-Code lang genug läuft, 
+um den Zeitverlust der Kompilierung gegenüber meines C-Codes wett zumachen.
+
+Ist das optimierte Programm schneller?
+Dies ist der Log für das Optimierte Programm:
+paul@KruesselPC:~/sysprog/aufgabe2$ make clean
+rm -f bubblesort bubblesort.o
+paul@KruesselPC:~/sysprog/aufgabe2$ make
+gcc -g -Wall -Wextra -Werror -Wvla -std=c11 -pedantic    bubblesort.c   -o bubblesort
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 1000 < /dev/null > /dev/null
+
+real    0m0.002s
+user    0m0.000s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 10000 < /dev/null > /dev/null
+
+real    0m0.079s
+user    0m0.086s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
+
+real    0m17.081s
+user    0m15.152s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
+
+real    0m13.959s
+user    0m15.221s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ make clean
+rm -f bubblesort bubblesort.o
+paul@KruesselPC:~/sysprog/aufgabe2$ make "CC=gcc -g -O2" clean all
+rm -f bubblesort bubblesort.o
+gcc -g -O2 -Wall -Wextra -Werror -Wvla -std=c11 -pedantic    bubblesort.c   -o bubblesort
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 1000 < /dev/null > /dev/null
+
+real    0m0.002s
+user    0m0.001s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 10000 < /dev/null > /dev/null
+
+real    0m0.138s
+user    0m0.150s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
+
+real    0m20.201s
+user    0m22.036s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$ time ./bubblesort 100000 < /dev/null > /dev/null
+
+real    0m20.355s
+user    0m22.050s
+sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe2$
+
+Es ist klar zu erkennen, dass das unoptimierte Programm schneller ist.
