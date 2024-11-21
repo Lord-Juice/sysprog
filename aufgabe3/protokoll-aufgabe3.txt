@@ -69,4 +69,13 @@ paul@KruesselPC:~/sysprog/aufgabe3$ time ./stringsort-optimiert 20000 > /dev/nul
 real    0m1.676s
 user    0m1.673s
 sys     0m0.000s
+paul@KruesselPC:~/sysprog/aufgabe3$ make TARGET=stringsort-kombiniert
+gcc -g -Wall -Wextra -Werror -Wvla -std=c11 -pedantic    stringsort-kombiniert.c   -o stringsort-kombiniert
+paul@KruesselPC:~/sysprog/aufgabe3$ time ./stringsort-kombiniert 20000 > /dev/null
+
+real    0m1.240s
+user    0m1.347s
+sys     0m0.001s
 paul@KruesselPC:~/sysprog/aufgabe3$ 
+
+Nein, das optimierte Programm ist nicht schneller, das kombinierte aber schon.
