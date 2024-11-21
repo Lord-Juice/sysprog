@@ -1,0 +1,56 @@
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ make clean
+rm -f aufgabe1 aufgabe1.o
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ make
+gcc -g -fno-stack-protector -Wwrite-strings -Wall -Wextra -Werror -std=c11 -pedantic    aufgabe1.c   -o aufgabe1
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ ./aufgabe1
+Adress | space | type | name | value
+0x7ffd317a6c1f | 1 | char | c | 1
+0x7ffd317a6c18 | 4 | int | i | 2
+0x7ffd317a6c14 | 4 | float | f | 3.000000
+0x7ffd317a6c08 | 8 | double | d | 4.000000
+0x7ffd317a6c06 | 2 | short int | si | 5
+0x7ffd317a6bf8 | 8 | long int | li | 6
+0x7ffd317a6bf0 | 8 | long long int | lli | 7
+0x7ffd317a6bef | 1 | unsigned char | uc | 8
+0x7ffd317a6be8 | 4 | unsigned int | ui | 9
+0x7ffd317a6be6 | 2 | unsigned short int | usi | 10
+0x7ffd317a6bd8 | 8 | unsigned long int | uli | 11
+0x7ffd317a6bd0 | 8 | unsigned long long int | ulli | 12
+0x7ffd317a6bcf | 1 | _Bool | b | 1
+0x7ffd317a6bc0 | 8 | const char* | s | Hallo
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ ./aufgabe1 | sort
+0x7ffc9d7b7740 | 8 | const char* | s | Hallo
+0x7ffc9d7b774f | 1 | _Bool | b | 1
+0x7ffc9d7b7750 | 8 | unsigned long long int | ulli | 12
+0x7ffc9d7b7758 | 8 | unsigned long int | uli | 11
+0x7ffc9d7b7766 | 2 | unsigned short int | usi | 10
+0x7ffc9d7b7768 | 4 | unsigned int | ui | 9
+0x7ffc9d7b776f | 1 | unsigned char | uc | 8
+0x7ffc9d7b7770 | 8 | long long int | lli | 7
+0x7ffc9d7b7778 | 8 | long int | li | 6
+0x7ffc9d7b7786 | 2 | short int | si | 5
+0x7ffc9d7b7788 | 8 | double | d | 4.000000
+0x7ffc9d7b7794 | 4 | float | f | 3.000000
+0x7ffc9d7b7798 | 4 | int | i | 2
+0x7ffc9d7b779f | 1 | char | c | 1
+Adress | space | type | name | value
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ ./aufgabe1 | sort -r
+Adress | space | type | name | value
+0x7ffd2d57e30f | 1 | char | c | 1
+0x7ffd2d57e308 | 4 | int | i | 2
+0x7ffd2d57e304 | 4 | float | f | 3.000000
+0x7ffd2d57e2f8 | 8 | double | d | 4.000000
+0x7ffd2d57e2f6 | 2 | short int | si | 5
+0x7ffd2d57e2e8 | 8 | long int | li | 6
+0x7ffd2d57e2e0 | 8 | long long int | lli | 7
+0x7ffd2d57e2df | 1 | unsigned char | uc | 8
+0x7ffd2d57e2d8 | 4 | unsigned int | ui | 9
+0x7ffd2d57e2d6 | 2 | unsigned short int | usi | 10
+0x7ffd2d57e2c8 | 8 | unsigned long int | uli | 11
+0x7ffd2d57e2c0 | 8 | unsigned long long int | ulli | 12
+0x7ffd2d57e2bf | 1 | _Bool | b | 1
+0x7ffd2d57e2b0 | 8 | const char* | s | Hallo
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ make cppcheck
+cppcheck --enable=warning,style --std=c11 aufgabe1.c
+Checking aufgabe1.c ...
+paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$
