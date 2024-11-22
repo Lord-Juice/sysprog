@@ -3,8 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-#define m 12
-
 void bubblesort(void *base, size_t nitems, size_t size, int (*compar)(const void *, const void *)) {
     char *a = (char *)base; // Cast zu char* für Berechnung von Offsets
     char *tmp = malloc(size); // Temporärer Speicher für ein Element
@@ -30,6 +28,8 @@ void bubblesort(void *base, size_t nitems, size_t size, int (*compar)(const void
 
 
 int main(int argc, const char *argv[]) {
+    int stringLength = strlen(argv[1]) + 1;
+
     if (argc != 2) {
         fprintf(stderr, "Usage: %s Anzahl\n", argv[0]);
         return 1;
@@ -41,34 +41,46 @@ int main(int argc, const char *argv[]) {
         return 1;
     }
 
-    char *a = malloc(n * m * sizeof(char));
+    char *a = malloc(n * stringLength * sizeof(char));
     if (a == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
         return 1;
     }
 
     srand(time(NULL));
+    
+    char *output = malloc(n * stringLength * sizeof(char));
+    if (output == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
 
     printf("Unsortiertes Array:\n");
+    strcpy(output, "");
     for (int i = 0; i < n; ++i) {
         int r = rand() % n;
-        snprintf(&a[i * m], m, "%d", r);
-        printf("%s ", &a[i * m]);
+        snprintf(&a[i * stringLength], stringLength, "%d", r);
+        strcat(output, &a[i * stringLength]);
+        strcat(output, " ");
     }
-    printf("\n");
+    printf("%s\n", output);
 
-    bubblesort(a, n, m, (int (*)(const void *, const void *))strcmp);
+    // Clear the output string
+    output[0] = '\0';
+
+    bubblesort(a, n, stringLength, (int (*)(const void *, const void *))strcmp);
 
     printf("Sortiertes Array:\n");
-    printf("%s", &a[0]);
+    strcpy(output, &a[0]);
     for (int i = 1; i < n; ++i) {
-        if (strcmp(&a[i * m], &a[(i - 1) * m]) == 0) {
-            printf("*");
+        if (strcmp(&a[i * stringLength], &a[(i - 1) * stringLength]) == 0) {
+            strcat(output, "*");
         } else {
-            printf(" %s", &a[i * m]);
+            strcat(output, " ");
+            strcat(output, &a[i * stringLength]);
         }
     }
-    printf("\n");
+    printf("%s\n", output);
 
     free(a);
 

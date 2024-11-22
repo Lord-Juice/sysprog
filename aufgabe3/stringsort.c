@@ -22,6 +22,7 @@ int main(int argc, const char *argv[]) {
     }
 
     int n = atoi(argv[1]);
+    int stringLength = strlen(argv[1]) + 1;
     if (n < 1) {
         fprintf(stderr, "Anzahl muss mindestens 1 sein\n");
         return 1;
@@ -35,31 +36,43 @@ int main(int argc, const char *argv[]) {
 
     srand(time(NULL));
 
+    char *output = malloc(n * stringLength * sizeof(char));
+    if (output == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
     printf("Unsortiertes Array:\n");
     for (int i = 0; i < n; ++i) {
         int r = rand() % n;
-        a[i] = malloc(12 * sizeof(char)); // Allocate memory for each string
+        a[i] = malloc(stringLength * sizeof(char)); // Allocate memory for each string
         if (a[i] == NULL) {
             fprintf(stderr, "Memory allocation failed\n");
             return 1;
         }
-        snprintf(a[i], 12, "%d", r);
+        snprintf(a[i], stringLength, "%d", r);
         printf("%s ", a[i]);
+        strcat(output, a[i]);
+        strcat(output, " ");
     }
-    printf("\n");
+    printf("%s\n", output);
+    output[0] = '\0';
 
     bubblesort(a, n);
 
     printf("Sortiertes Array:\n");
-    printf("%s", a[0]);
+
+    strcpy(output, a[0]);
     for (int i = 1; i < n; ++i) {
         if (strcmp(a[i], a[i - 1]) == 0) {
-            printf("*");
+            strcat(output, "*");
         } else {
-            printf(" %s", a[i]);
+            strcat(output, " ");
+            strcat(output, a[i]);
         }
     }
-    printf("\n");
+    printf("%s\n", output);
+    free(output);
 
     for (int i = 0; i < n; ++i) {
         free(a[i]);

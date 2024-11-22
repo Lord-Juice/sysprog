@@ -20,18 +20,28 @@ Adress | space | type | name | value
 0x7ffd317a6bc0 | 8 | const char* | s | Hallo
 paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ ./aufgabe1 | sort
 0x7ffc9d7b7740 | 8 | const char* | s | Hallo
+endet 7747, 8 extra
+Lücke
 0x7ffc9d7b774f | 1 | _Bool | b | 1
 0x7ffc9d7b7750 | 8 | unsigned long long int | ulli | 12
 0x7ffc9d7b7758 | 8 | unsigned long int | uli | 11
+endet 775f, 6 extra
+Lücke
 0x7ffc9d7b7766 | 2 | unsigned short int | usi | 10
 0x7ffc9d7b7768 | 4 | unsigned int | ui | 9
+endet 776b 4 extra
+Lücke
 0x7ffc9d7b776f | 1 | unsigned char | uc | 8
 0x7ffc9d7b7770 | 8 | long long int | lli | 7
 0x7ffc9d7b7778 | 8 | long int | li | 6
 0x7ffc9d7b7786 | 2 | short int | si | 5
 0x7ffc9d7b7788 | 8 | double | d | 4.000000
+endet 779f 4 extra
+Lücke
 0x7ffc9d7b7794 | 4 | float | f | 3.000000
 0x7ffc9d7b7798 | 4 | int | i | 2
+endet 779b 3 extra
+Lücke
 0x7ffc9d7b779f | 1 | char | c | 1
 Adress | space | type | name | value
 paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ ./aufgabe1 | sort -r
@@ -54,3 +64,11 @@ paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$ 
 cppcheck --enable=warning,style --std=c11 aufgabe1.c
 Checking aufgabe1.c ...
 paul@Pauls-Laptop:/mnt/c/users/krues/OneDrive/HTWG/B-Semester/sysprog/aufgabe1$
+
+Sind die Variablen in der Reihenfolge ihrer Definition im Hauptspeicher abgelegt?
+nein, sie sind genau anders herum abgespeichert, von unten nach oben.
+Liegen die Variablen direkt hintereinander oder gibt es Lücken? Falls es Lücken gibt, wo liegen sie? Können Sie sich erklären, warum es eventuell Lücken gibt?
+Nein, es gibt eine Lücken, siehe oben. Könnte daran liegen, dass andere Programme auf den Speicher zugreifen?
+
+Wie viel Speicher belegen die Variablen insgesamt, also inklusive eventueller Lücken?
+insgesamt von 0x7ffc9d7b7740 bis 0x7ffc9d7b779f + 1, also 96 bits.
